@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Building2, ClipboardCheck, Camera, BarChart3 } from 'lucide-react';
 import Header from '../components/Header';
 
@@ -7,21 +8,51 @@ export default function HomePage() {
     <>
       <Header />
       <main className="mx-auto max-w-7xl px-5 py-12">
-        <section className="rounded-3xl bg-gradient-to-br from-caliber-navy to-caliber-blue text-white p-10 md:p-16">
-          <p className="font-bold tracking-widest text-sm opacity-80">CALIBER ASSET INTELLIGENCE</p>
-          <h1 className="text-4xl md:text-6xl font-black mt-4 max-w-4xl">
-            Remote Property Assessment for Hotel PM and Asset Stabilization
-          </h1>
-          <p className="mt-6 text-lg max-w-3xl opacity-90">
-            Submit property condition details, operational constraints, photos, and videos so Caliber can evaluate PM readiness, expected production cadence, recommended scope, and pricing strategy before deployment.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Link className="btn-primary bg-white text-caliber-navy hover:bg-caliber-light" href="/assessment">
-              Start Assessment
-            </Link>
-            <Link className="btn-secondary bg-transparent text-white border-white hover:bg-white/10" href="/admin">
-              Internal Dashboard
-            </Link>
+        <section className="rounded-3xl bg-white border border-slate-200 shadow-sm p-10 md:p-16">
+          <div className="max-w-4xl">
+            <Image
+              src="/caliber-logo.jpg"
+              alt="Caliber Lodging"
+              width={420}
+              height={80}
+              className="mb-8 h-auto w-full max-w-[420px]"
+              priority
+            />
+
+            <p className="font-bold tracking-widest text-sm text-caliber-blue">
+              CALIBER ASSET INTELLIGENCE
+            </p>
+
+            <h1 className="text-4xl md:text-6xl font-black mt-4 max-w-4xl text-caliber-navy">
+              Remote Property Assessment for Hotel PM and Asset Stabilization
+            </h1>
+
+            <p className="mt-6 text-lg max-w-3xl text-slate-700 leading-relaxed">
+              Helping hotel owners and operators evaluate guestroom condition, expected production cadence,
+              recommended scope, and budgetary pricing before preventative maintenance deployment.
+            </p>
+
+            <div className="mt-8 grid sm:grid-cols-2 gap-3 max-w-2xl text-slate-700">
+              <CheckItem text="PM Readiness Score" />
+              <CheckItem text="Estimated Production Rate" />
+              <CheckItem text="Recommended Scope" />
+              <CheckItem text="Budgetary Pricing" />
+              <CheckItem text="Asset Preservation Opportunities" />
+              <CheckItem text="Photo and Video Review" />
+            </div>
+
+            <p className="mt-8 text-sm font-semibold text-slate-500">
+              Estimated completion time: 15 minutes
+            </p>
+
+            <div className="mt-6 flex flex-wrap gap-4">
+              <Link className="btn-primary" href="/assessment">
+                Start Assessment
+              </Link>
+              <Link className="btn-secondary" href="/admin">
+                Internal Dashboard
+              </Link>
+            </div>
           </div>
         </section>
 
@@ -33,6 +64,17 @@ export default function HomePage() {
         </section>
       </main>
     </>
+  );
+}
+
+function CheckItem({ text }) {
+  return (
+    <div className="flex items-center gap-2">
+      <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-caliber-light text-caliber-blue text-xs font-black">
+        ✓
+      </span>
+      <span>{text}</span>
+    </div>
   );
 }
 
