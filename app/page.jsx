@@ -3,6 +3,8 @@ import Image from 'next/image';
 import { Building2, ClipboardCheck, Camera, BarChart3 } from 'lucide-react';
 import Header from '../components/Header';
 
+const assessmentId = crypto.randomUUID();
+
 export default function HomePage() {
   return (
     <>
@@ -87,3 +89,12 @@ function Feature({ icon, title, text }) {
     </div>
   );
 }
+
+const { error } = await supabase
+  .from('assessments')
+  .insert({
+    id: assessmentId,
+    ...payload
+  });
+
+if (error) throw error;
