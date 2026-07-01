@@ -111,10 +111,16 @@ export default function AssessmentPage() {
         recommended_pricing: pricing
       };
 
-      const { data, error } = await supabase.from('assessments').insert(payload).select('id').single();
-      if (error) throw error;
+      const assessmentId = crypto.randomUUID();
 
-      const assessmentId = data.id;
+      const { error } = await supabase
+          .from('assessments')
+          .insert({
+            id: assessmentId,
+            ...payload
+      });
+
+      if (error) throw error;
 
       for (const [label, fileList] of Object.entries(files)) {
         for (const file of fileList) {
